@@ -1,8 +1,12 @@
 import { cn } from "@/lib/utils";
 import { Button } from "./button";
 import { ScrollArea } from "./scroll-area";
+import { useMessage } from '@/context/contextProvider'
 
 export function Sidebar({ className, options }) {
+
+  const { sidebarstep, setSidebarStep } = useMessage();
+
   return (
     <div className={cn("pb-12", className)}>
       <div className="space-y-4 py-4">
@@ -44,11 +48,13 @@ export function Sidebar({ className, options }) {
           </h2> */}
           <ScrollArea className="h-[300px] px-1 w-[20vw]">
             <div className="space-y-1 p-2">
+            <Button className="">Compose</Button>
               {options?.map((option, i) => (
                 <Button
                   key={`${option}-${i}`}
                   variant="ghost"
                   className="w-full justify-start font-normal"
+                  onClick={() => { setSidebarStep(i) }}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
